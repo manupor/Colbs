@@ -1,0 +1,158 @@
+/*
+ Theme Name:   Justitia Child Theme
+ Theme URI:    http://justitia.themerex.net
+ Description:  Justitia Child Theme
+ Author:       ThemeREX
+ Author URI:   http://themerex.net
+ Template:     justitia
+ Version:      1.0
+ Tags:         flexible-header, custom-background, custom-colors, custom-header, custom-menu, featured-image-header, featured-images, full-width-template, microformats, post-formats, theme-options, threaded-comments, translation-ready
+ Text Domain:  justitia
+*/
+
+
+/* =Theme customization starts here
+-------------------------------------------------------------- */
+
+.sc_layouts_title_title > .sc_layouts_title_caption {
+    font-size: 2.5em;    
+    color: #FF6C0E;
+    font-weight: bold;
+}
+
+.sc_layouts_item_details .sc_layouts_item_details_line1,
+.sc_layouts_item_details .sc_layouts_item_details_line2 {
+    font-size: 1rem;
+}
+
+.scheme_default .sc_layouts_item_icon{
+    border-radius: 50%;
+    font-size: 1.5em;
+}
+
+.sc_title.sc_title_accent .sc_item_title{
+    font-size: 2.5em;
+}
+
+.page-id-411 .page_content_wrap {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+
+.wpcf7 .select_container, .wpcf7 input:not([type=submit]):not([type=radio]):not([type=checkbox]){
+    background-color: #fff;
+}
+
+.scheme_default .select_container select{
+    background-color: #fff !important;
+}
+
+.wpcf7 .columns_wrap textarea{
+    background-color: #fff !important;
+}
+
+.footer_wrap .sc_icons .sc_icons_item .sc_icons_item_description {
+    line-height: 30px !important;
+    text-align: justify !important;
+}
+
+.single-cpt_team h5{
+	font-size: 24px !important;
+	font-weight: bold;
+	
+	
+}
+
+.single-cpt_services h5{
+	margin-top: 30px !important;
+    margin-bottom: 20px !important;
+}
+
+ul.trx_addons_list_custom li{
+	font-size: inherit !important;
+}
+
+.sc_services.sc_services_light .sc_services_item_info{
+	min-height: 224px;
+	padding: 20px;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.menu_main_nav>li>ul, .top_panel .sc_layouts_row:not(.sc_layouts_row_type_narrow) .sc_layouts_menu_nav>li>ul, .top_panel .sc_layouts_row:not(.sc_layouts_row_type_narrow) .sc_layouts_menu_popup .sc_layouts_menu_nav{
+	width: 300px;
+}
+
+
+.sc_testimonials.sc_testimonials_extra .sc_testimonials_item .sc_testimonials_item_author .sc_testimonials_item_author_subtitle + .sc_testimonials_item_author_title{
+	padding-left: 0px;
+}
+
+.elementor-widget-text-editor ul li{
+	margin-bottom: 15px;
+	text-align: justify;
+}
+
+.team_member_page .team_member_brief_info_text {
+	text-align:justify;
+}
+
+.cpt_team-template-default .team_member_page .team_member_header .team_member_description .team_member_position {
+	text-align: justify;
+}
+
+.scheme_dark.footer_wrap, .footer_wrap .scheme_dark.vc_row{
+	background-color: #1a2e4a !important;
+}
+
+[class^=icon-]:before, [class*=" icon-"]:before {
+	width: 50px;
+}
+
+.footer_wrap .scheme_dark .sc_icons .sc_icons_item_linked .sc_icons_item_description span span,
+.icons-contact .sc_icons .sc_icons_item_description span span,
+.footer_wrap .scheme_dark .sc_icons .sc_icons_item_linked:hover .sc_icons_item_description{
+	color: #ff6c0e;
+}
+
+.scheme_default .sc_layouts_item_details_line1{
+	color: #1a2e4a;
+}
+
+.scheme_default .sc_team_short .socials_wrap .social_item .social_icon {
+	color: #ffffff;
+ 	background-color: #ff6c0e;
+}
+
+.elementor-widget-trx_sc_team .social_icon .icon-linkedin{
+	color: #ffffff;
+ 	background-color: #ff6c0e;
+}
+.menu-section .sc_layouts_menu #menu_main li a{
+	color: #fff !important;
+}
+
+.menu-section .sc_layouts_menu #menu_main>li>a:hover, 
+.menu-section .sc_layouts_menu #menu_main>li.current-menu-item>a, 
+.menu-section .sc_layouts_menu #menu_main>li.current-menu-parent>a, 
+.menu-section .sc_layouts_menu #menu_main>li.current-menu-ancestor>a {
+	color: #ff6c0e !important	
+}
+
+.menu-section .sc_layouts_menu #menu_main li  .sub-menu li a{
+	color: #1A2E4A !important;
+}
+
+@media all and (max-width: 786px) {
+	.sc_layouts_menu_popup .sc_layouts_menu_nav{
+		left: 42%;
+	}
+	
+	[class^=icon-]:before, [class*=" icon-"]:before{
+		width: auto;
+	}
+}
+
