@@ -68,6 +68,16 @@ export default function App() {
     // Navegación SPA sin recargar la página
     const onClick = (e) => {
       if (e.defaultPrevented) return; // un script de la página ya manejó el click (p.ej. modal de team)
+      // Tarjeta de equipo: foto/CTA abren el mismo popup que el nombre
+      const card = e.target.closest('.colbsx-card');
+      if (card && !e.target.closest('.colbsx-name')) {
+        const nameLink = card.querySelector('.colbsx-name a');
+        if (nameLink) {
+          e.preventDefault();
+          nameLink.click();
+          return;
+        }
+      }
       const a = e.target.closest('a');
       if (!a) return;
       const href = a.getAttribute('href');
