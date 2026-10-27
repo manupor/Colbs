@@ -67,6 +67,7 @@ export default function App() {
   useEffect(() => {
     // Navegación SPA sin recargar la página
     const onClick = (e) => {
+      if (e.defaultPrevented) return; // un script de la página ya manejó el click (p.ej. modal de team)
       const a = e.target.closest('a');
       if (!a) return;
       const href = a.getAttribute('href');
