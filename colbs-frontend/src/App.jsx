@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { Routes, Route, useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Routes, Route, useNavigate, useParams, useLocation } from 'react-router-dom';
 import { BODY_CLASSES, PAGE_SCRIPTS } from './pages/manifest.js';
 import homeHtml from './pages/home.html?raw';
 import teamHtml from './pages/team.html?raw';
@@ -26,19 +26,30 @@ const PAGES = {
 const loadedScripts = new Set();
 
 function loadScript(src) {
-  if (loadedScripts.has(src)) return;
-  loadedScripts.add(src);
-  const s = document.createElement('script');
-  s.src = src;
-  document.body.appendChild(s);
+  return new Promise((resolve) => {
+    if (loadedScripts.has(src)) return resolve();
+    loadedScripts.add(src);
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload = resolve;
+    s.onerror = resolve;
+    document.body.appendChild(s);
+  });
+}
+
+// Los scripts del tema registran handlers en DOMContentLoaded; en la SPA ese
+// evento ya pasó, así que lo disparamos manualmente tras cargarlos.
+function fireDomReady() {
+  document.dispatchEvent(new Event('DOMContentLoaded', { bubbles: true }));
 }
 
 function Page({ slug }) {
   useEffect(() => {
     document.body.className = BODY_CLASSES[slug] || '';
     window.scrollTo(0, 0);
-    loadScript('/vendor/inline.js');
-    if (PAGE_SCRIPTS[slug]) loadScript(PAGE_SCRIPTS[slug]);
+    const jobs = [loadScript('/vendor/inline.js')];
+    if (PAGE_SCRIPTS[slug]) jobs.push(loadScript(PAGE_SCRIPTS[slug]));
+    Promise.all(jobs).then(fireDomReady);
   }, [slug]);
 
   if (!PAGES[slug]) return <NotFound />;
@@ -48,6 +59,17 @@ function Page({ slug }) {
 function TeamMember() {
   const { member } = useParams();
   return <Page slug={`team/${member}`} />;
+}
+
+function Loader() {
+  return (
+    <div className="app-loader">
+      <div className="app-loader-inner">
+        <img src="/assets/c0d60085f5_logo-v2.png" alt="COLBS" className="app-loader-logo" />
+        <div className="app-loader-dots"><div /><div /><div /><div /></div>
+      </div>
+    </div>
+  );
 }
 
 function NotFound() {
@@ -63,6 +85,15 @@ function NotFound() {
 
 export default function App() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [loading, setLoading] = useState(true);
+
+  // Loader breve al cargar y en cada navegación (como el preloader original)
+  useEffect(() => {
+    setLoading(true);
+    const t = setTimeout(() => setLoading(false), 700);
+    return () => clearTimeout(t);
+  }, [location.pathname]);
 
   useEffect(() => {
     // Navegación SPA sin recargar la página
@@ -105,16 +136,19 @@ export default function App() {
   }, [navigate]);
 
   return (
-    <Routes>
-      <Route path="/" element={<Page slug="home" />} />
-      <Route path="/team" element={<Page slug="team" />} />
-      <Route path="/team/:member" element={<TeamMember />} />
-      <Route path="/our-features" element={<Page slug="our-features" />} />
-      <Route path="/areas-of-practice" element={<Page slug="areas-of-practice" />} />
-      <Route path="/blog" element={<Page slug="blog" />} />
-      <Route path="/news" element={<Page slug="news" />} />
-      <Route path="/contacts" element={<Page slug="contacts" />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <>
+      {loading && <Loader />}
+      <Routes>
+        <Route path="/" element={<Page slug="home" />} />
+        <Route path="/team" element={<Page slug="team" />} />
+        <Route path="/team/:member" element={<TeamMember />} />
+        <Route path="/our-features" element={<Page slug="our-features" />} />
+        <Route path="/areas-of-practice" element={<Page slug="areas-of-practice" />} />
+        <Route path="/blog" element={<Page slug="blog" />} />
+        <Route path="/news" element={<Page slug="news" />} />
+        <Route path="/contacts" element={<Page slug="contacts" />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   );
 }

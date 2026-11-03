@@ -3615,3 +3615,24 @@ section.colbs-rankings h2.title {
 .elementor-427 .elementor-element.elementor-element-21f9e53 > .elementor-container > .elementor-column > .elementor-widget-wrap{align-content:flex-start;align-items:flex-start;}.elementor-427 .elementor-element.elementor-element-21f9e53:not(.elementor-motion-effects-element-type-background), .elementor-427 .elementor-element.elementor-element-21f9e53 > .elementor-motion-effects-container > .elementor-motion-effects-layer{background-color:#1A2E4A;}.elementor-427 .elementor-element.elementor-element-21f9e53{transition:background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;padding:107px 0px 107px 0px;}.elementor-427 .elementor-element.elementor-element-21f9e53 > .elementor-background-overlay{transition:background 0.3s, border-radius 0.3s, opacity 0.3s;}.elementor-427 .elementor-element.elementor-element-bd0cbed{-ms-flex-pack:inherit;-webkit-justify-content:inherit;justify-content:inherit;}.elementor-427 .elementor-element.elementor-element-bd0cbed > .elementor-element-populated{margin:5px 0px 0px 0px;--e-column-margin-right:0px;--e-column-margin-left:0px;}.elementor-427 .elementor-element.elementor-element-133ff9d > .elementor-widget-container{padding:0px 45px 0px 45px;}.elementor-427 .elementor-element.elementor-element-450ff2b{-ms-flex-pack:inherit;-webkit-justify-content:inherit;justify-content:inherit;}.elementor-427 .elementor-element.elementor-element-450ff2b > .elementor-element-populated{margin:0px 0px 0px 0px;--e-column-margin-right:0px;--e-column-margin-left:0px;}.elementor-427 .elementor-element.elementor-element-2e6c030{-ms-flex-pack:inherit;-webkit-justify-content:inherit;justify-content:inherit;}@media(max-width:1024px) and (min-width:768px){.elementor-427 .elementor-element.elementor-element-bd0cbed{width:100%;}.elementor-427 .elementor-element.elementor-element-450ff2b{width:100%;}.elementor-427 .elementor-element.elementor-element-2e6c030{width:100%;}}@media(max-width:1024px){.elementor-427 .elementor-element.elementor-element-21f9e53{padding:80px 0px 80px 0px;}.elementor-427 .elementor-element.elementor-element-bd0cbed > .elementor-element-populated{margin:0px 0px 0px 0px;--e-column-margin-right:0px;--e-column-margin-left:0px;}.elementor-427 .elementor-element.elementor-element-450ff2b > .elementor-element-populated{margin:40px 0px 0px 0px;--e-column-margin-right:0px;--e-column-margin-left:0px;}.elementor-427 .elementor-element.elementor-element-2e6c030 > .elementor-element-populated{margin:40px 0px 0px 0px;--e-column-margin-right:0px;--e-column-margin-left:0px;}}@media(max-width:767px){.elementor-427 .elementor-element.elementor-element-21f9e53{padding:60px 0px 60px 0px;}}
 
 .trx_addons_inline_1070801576 img{max-height:120px;}.trx_addons_inline_2102352870 img{max-height:120px;}
+/* Fix: Elementor gap-extended igual que la versión del sitio original (0px top/bottom) */
+.elementor-column-gap-extended>.elementor-column>.elementor-element-populated{padding:0 15px}
+
+/* Stretch de sección Elementor (full-width) como en el sitio original */
+.elementor-section-stretched{position:relative;left:calc(50% - 50vw);width:100vw}
+
+/* Color de texto base del tema */
+body{color:#303030}
+
+/* Stretch forzado (reemplaza al JS de Elementor que fijaba inline width/left) */
+.elementor-section-stretched{width:100vw !important;left:calc(50% - 50vw) !important;position:relative !important}
+
+/* Loader tipo preloader-plus del sitio original */
+.app-loader{position:fixed;inset:0;z-index:99999;background:#eee;display:flex;align-items:center;justify-content:center}
+.app-loader-inner{text-align:center}
+.app-loader-logo{max-height:120px;display:block;margin:0 auto 30px}
+.app-loader-dots div{display:inline-block;width:11px;height:11px;margin:0 4px;border-radius:50%;background:#1A2E4A;animation:appLoaderDot 1.2s infinite ease-in-out}
+.app-loader-dots div:nth-child(2){animation-delay:.15s}
+.app-loader-dots div:nth-child(3){animation-delay:.3s}
+.app-loader-dots div:nth-child(4){animation-delay:.45s}
+@keyframes appLoaderDot{0%,80%,100%{transform:scale(.6);opacity:.4}40%{transform:scale(1);opacity:1}}
