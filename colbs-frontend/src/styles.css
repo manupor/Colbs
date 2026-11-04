@@ -819,6 +819,15 @@ section.colbs-rankings h2.title {
 .sc_layouts_menu { visibility: visible !important; overflow: visible !important; }
 #sb_instagram .sbi_item, .sbi .sbi_item { opacity: 1 !important; transition: none !important; }
 
+/* News: grid de cuadrados perfectos tipo Instagram */
+#sb_instagram #sbi_images{ display:grid !important; grid-template-columns:repeat(4,1fr) !important; gap:10px !important; }
+#sb_instagram .sbi_item{ aspect-ratio:1/1 !important; width:auto !important; height:auto !important; margin:0 !important; padding:0 !important; }
+#sb_instagram .sbi_photo_wrap{ height:100% !important; }
+#sb_instagram .sbi_photo{ display:block !important; height:100% !important; padding-bottom:0 !important; }
+#sb_instagram .sbi_photo img{ width:100% !important; height:100% !important; object-fit:cover !important; position:static !important; }
+@media (max-width:1024px){ #sb_instagram #sbi_images{ grid-template-columns:repeat(2,1fr) !important; } }
+@media (max-width:640px){ #sb_instagram #sbi_images{ grid-template-columns:1fr !important; } }
+
 
 /* ===== estilos páginas internas ===== */
 
