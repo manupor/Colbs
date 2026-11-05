@@ -2104,6 +2104,20 @@ body.colbsx-lock {
   transition: none !important;
 }
 
+/* Rankings/Affiliations: el card del marquee no debe rebasar el viewport en móvil */
+@media (max-width: 820px) {
+  .colbs-rankings__grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .logo-card,
+  .aff-logo-card {
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+  }
+}
+
 /* Menú móvil: ocultar contenido cuando está cerrado y mostrar overlay al abrir */
 .menu_mobile {
   overflow: hidden !important;
