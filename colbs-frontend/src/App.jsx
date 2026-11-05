@@ -46,6 +46,8 @@ function fireDomReady() {
 function Page({ slug }) {
   useEffect(() => {
     document.body.className = BODY_CLASSES[slug] || '';
+    document.querySelector('.menu_mobile')?.classList.remove('opened');
+    document.querySelector('.menu_mobile_overlay')?.classList.remove('opened');
     window.scrollTo(0, 0);
     const jobs = [loadScript('/vendor/inline.js')];
     if (PAGE_SCRIPTS[slug]) jobs.push(loadScript(PAGE_SCRIPTS[slug]));
@@ -99,6 +101,20 @@ export default function App() {
     // Navegación SPA sin recargar la página
     const onClick = (e) => {
       if (e.defaultPrevented) return; // un script de la página ya manejó el click (p.ej. modal de team)
+      // Menú hamburguesa móvil: el tema original lo abría con JS (clase .opened)
+      const burger = e.target.closest('.sc_layouts_menu_mobile_button');
+      if (burger) {
+        e.preventDefault();
+        document.querySelector('.menu_mobile')?.classList.toggle('opened');
+        document.querySelector('.menu_mobile_overlay')?.classList.toggle('opened');
+        return;
+      }
+      if (e.target.closest('.menu_mobile_close') || e.target.closest('.menu_mobile_overlay')) {
+        e.preventDefault();
+        document.querySelector('.menu_mobile')?.classList.remove('opened');
+        document.querySelector('.menu_mobile_overlay')?.classList.remove('opened');
+        return;
+      }
       // Tarjeta de equipo: foto/CTA abren el mismo popup que el nombre
       const card = e.target.closest('.colbsx-card');
       if (card && !e.target.closest('.colbsx-name')) {
