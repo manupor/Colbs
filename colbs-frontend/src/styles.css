@@ -7158,6 +7158,8 @@ body {
 
 .app-loader-logo {
   max-height: 120px;
+  max-width: min(240px, 60vw);
+  width: auto;
   display: block;
   margin: 0 auto 30px
 }
